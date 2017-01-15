@@ -2,9 +2,7 @@ import React from 'react';
 
 const Loading = () => {
   return (
-    <div className="boxLoading">
-      asdasd
-    </div>
+    <div className="loading-spinner"></div>
   );
 };
 

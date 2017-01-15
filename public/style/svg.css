@@ -1,0 +1,22 @@
+.lock-cls-1, .lock-cls-2 {
+  fill: none;
+  stroke: #737373;
+  stroke-width: 2px;
+}
+
+.lock-cls-1 {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lock-cls-2 {
+  stroke-miterlimit: 10;
+}
+
+.off-cls-1 {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.75px;
+}

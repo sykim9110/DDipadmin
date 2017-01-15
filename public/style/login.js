@@ -73,9 +73,5 @@ export default StyleSheet.create({
     },
     "form button:focus": {
         "background": "#4c4b4b"
-    },
-    "sy-login-container": {
-        "height": 1080,
-        "backgroundColor": "black"
     }
 });

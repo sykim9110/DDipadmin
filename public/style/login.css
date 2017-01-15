@@ -39,8 +39,3 @@
 .form button:hover,.form button:active,.form button:focus {
   background: #4c4b4b;
 }
-
-#sy-login-container {
-  height: 1080px;
-  background-color: black;
-}

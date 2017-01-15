@@ -6,17 +6,24 @@ const {width, height, scale} = Dimensions.get("window"),
     vmax = Math.max(vw, vh);
 
 export default StyleSheet.create({
-    "cls-1": {
+    "lock-cls-1": {
         "fill": "none",
         "stroke": "#737373",
         "strokeWidth": 2,
         "strokeLinecap": "round",
         "strokeLinejoin": "round"
     },
-    "cls-2": {
+    "lock-cls-2": {
         "fill": "none",
         "stroke": "#737373",
         "strokeWidth": 2,
         "strokeMiterlimit": 10
+    },
+    "off-cls-1": {
+        "fill": "none",
+        "stroke": "#fff",
+        "strokeLinecap": "round",
+        "strokeLinejoin": "round",
+        "strokeWidth": 3.75
     }
 });

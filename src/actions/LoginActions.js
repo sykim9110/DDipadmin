@@ -16,3 +16,12 @@ export const logged = () => {
         });
     };
 };
+
+export const onClickLogout = () => {
+  return (dispatch) => {
+    firebase.auth().signOut()
+      .then(() => {
+        dispatch({ type: LOGGED_OUT });
+    });
+  };
+};

@@ -23,5 +23,8 @@ export default StyleSheet.create({
     },
     "input": {
         "fontFamily": "'Nanum Gothic'"
+    },
+    "h4": {
+        "fontFamily": "'Nanum Gothic'"
     }
 });
