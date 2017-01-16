@@ -1,3 +1,34 @@
+.container-fluid {
+  height: 1080px;
+}
+
+#SY-header {
+  height: auto;
+  background-color: black;
+}
+#SY-sidebar {
+  padding-top: 30px;
+  background: #F8F8F8;
+}
+#SY-content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 5%;
+  height: auto;
+}
+#SY-footer {
+  height: 500px;
+  background-color: #F8F8F8;
+}
+
 #SY-header-button {
   margin-left: auto;
+}
+
+.nav-link {
+  color: black;
+}
+
+.nav-link:hover {
+  color: gray;
 }

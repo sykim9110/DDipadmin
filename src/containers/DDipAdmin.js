@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { logged } from '../actions';
-import Loading from '../components/Loading';
-import LoginAdminContainer from './LoginAdminContainer';
-import Admin from './Admin';
+import DDipHeader from '../components/DDipHeader';
+import { Sidebar } from '../components/common';
 
 class DDipAdmin extends Component {
-  componentWillMount() {
-    this.props.logged();
-  }
-
   render() {
-    if (this.props.loading) {
-      return <Loading />;
-    }
-    if (!this.props.isLoggedIn) {
-      return <LoginAdminContainer />;
-    }
-    return <Admin />;
+    return (
+      <div className="container-fluid">
+        <DDipHeader />
+        <div className="row">
+          <Sidebar />
+          <div id="SY-content" className="col-10">
+            {this.props.children}
+          </div>
+        </div>
+        <div id="SY-footer" className="row">
+        </div>
+      </div>
+    );
   }
 }
 
-const select = (state) => {
-  const { isLoggedIn, loading, id } = state.user;
-
-  return { isLoggedIn, loading, id };
-};
-
-export default connect(select, { logged })(DDipAdmin);
+export default DDipAdmin;

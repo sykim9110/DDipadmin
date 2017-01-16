@@ -6,22 +6,24 @@ import { loginUser } from '../actions';
 class LoginAdminContainer extends Component {
   AdminloginUser() {
     const { values } = this.props.Admin;
-    console.log('adminloginuser', values);
     this.props.loginUser(values.id, values.password);
   }
 
   render() {
-    console.log('loginAdmin', this.props);
     return (
-      <LoginAdmin admin={this.AdminloginUser.bind(this)} />
+      <LoginAdmin
+        admin={this.AdminloginUser.bind(this)}
+        err={this.props.err}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => {
   const { Admin } = state.form;
+  const { err } = state.user;
 
-  return { Admin };
+  return { Admin, err };
 };
 
 export default connect(mapStateToProps, { loginUser })(LoginAdminContainer);

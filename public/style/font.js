@@ -26,5 +26,8 @@ export default StyleSheet.create({
     },
     "h4": {
         "fontFamily": "'Nanum Gothic'"
+    },
+    "a": {
+        "fontFamily": "'Nanum Gothic'"
     }
 });

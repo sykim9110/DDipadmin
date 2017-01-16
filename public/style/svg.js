@@ -25,5 +25,18 @@ export default StyleSheet.create({
         "strokeLinecap": "round",
         "strokeLinejoin": "round",
         "strokeWidth": 3.75
+    },
+    "off-cls-1:hover": {
+        "fill": "none",
+        "stroke": "#c24d4d",
+        "strokeLinecap": "round",
+        "strokeLinejoin": "round",
+        "strokeWidth": 3.75
+    },
+    "ddip-cls-1": {
+        "fill": "#ffc422"
+    },
+    "ddip-cls-2": {
+        "fill": "#fff"
     }
 });

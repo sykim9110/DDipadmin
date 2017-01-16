@@ -8,7 +8,7 @@ const {width, height, scale} = Dimensions.get("window"),
 export default StyleSheet.create({
     "login-page": {
         "width": 360,
-        "paddingTop": "20%",
+        "paddingTop": "15%",
         "paddingRight": 0,
         "paddingBottom": 0,
         "paddingLeft": 0,

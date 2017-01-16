@@ -20,3 +20,19 @@
   stroke-linejoin: round;
   stroke-width: 3.75px;
 }
+
+.off-cls-1:hover {
+  fill: none;
+  stroke: #c24d4d;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.75px;
+}
+
+.ddip-cls-1 {
+  fill: #ffc422;
+}
+
+.ddip-cls-2 {
+  fill: #fff;
+}
