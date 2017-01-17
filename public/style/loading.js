@@ -29,11 +29,7 @@ export default StyleSheet.create({
         "top": "50%",
         "right": 0,
         "bottom": 0,
-        "left": "50%",
-        "marginTop": -15,
-        "marginRight": 0,
-        "marginBottom": -15,
-        "marginLeft": 0
+        "left": "50%"
     },
     "body": {
         "background": "#774CFF"

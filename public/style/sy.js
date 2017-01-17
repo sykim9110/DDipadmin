@@ -15,6 +15,7 @@ export default StyleSheet.create({
     },
     "SY-sidebar": {
         "paddingTop": 30,
+        "paddingBottom": 30,
         "background": "#F8F8F8"
     },
     "SY-content": {
@@ -35,5 +36,15 @@ export default StyleSheet.create({
     },
     "nav-link:hover": {
         "color": "gray"
+    },
+    "SY-restForm": {
+        "marginTop": 10,
+        "marginLeft": 10
+    },
+    "SY-errMessage": {
+        "paddingTop": 20
+    },
+    "SY-restaurant-button": {
+        "marginRight": 10
     }
 });

@@ -8,6 +8,7 @@
 }
 #SY-sidebar {
   padding-top: 30px;
+  padding-bottom: 30px;
   background: #F8F8F8;
 }
 #SY-content {
@@ -31,4 +32,17 @@
 
 .nav-link:hover {
   color: gray;
+}
+
+#SY-restForm {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#SY-errMessage {
+  padding-top: 20px;
+}
+
+#SY-restaurant-button {
+  margin-right: 10px;
 }

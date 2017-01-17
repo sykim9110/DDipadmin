@@ -8,7 +8,8 @@ import DDipAnalytics from './containers/DDipAnalytics';
 import DDipStatement from './containers/DDipStatement';
 import DDipUser from './containers/DDipUser';
 import DDipRestaurant from './containers/DDipRestaurant';
-// import RestaurantRegister from './containers/RestaurantRegister';
+import RestaurantListView from './containers/RestaurantListView';
+import RestaurantRegister from './containers/RestaurantRegister';
 
 export default (
   <Route path="/" component={App}>
@@ -17,6 +18,9 @@ export default (
     <Route path="analytics" component={DDipAnalytics} />
     <Route path="statement" component={DDipStatement} />
     <Route path="user" component={DDipUser} />
-    <Route path="restaurant" component={DDipRestaurant} />
+    <Route path="restaurant" component={DDipRestaurant}>
+      <Route path="list" component={RestaurantListView} />
+      <Route path="add" component={RestaurantRegister} />
+    </Route>
   </Route>
 );
