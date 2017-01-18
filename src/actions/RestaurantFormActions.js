@@ -44,58 +44,121 @@ export const restaurantCreate = (props) => {
   const data4 = days.some(day => { return day !== undefined; });
   const data5 = coupons.every(coupon => { return coupon !== undefined; });
 
-  let storeday = [];
-  let a, b, c, d, e, f, g;
-
-  if (mon) { a = 1; }
-  if (tue) { b = 2; }
-  if (wed) { c = 3; }
-  if (thu) { d = 4; }
-  if (fri) { e = 5; }
-  if (sat) { f = 6; }
-  if (sun) { g = 0; }
-
-  if (all) {
-    storeday = [0, 1, 2, 3, 4, 5, 6];
-  } else {
-    const numbers = [g, a, b, c, d, e, f];
-    storeday = numbers.filter(number => {
-      return number !== undefined;
-    });
-  }
-
-  const storehourString = [storehourStart, storehourEnd];
-  const start = Number(storehourStart.slice(0, 2));
-  const end = Number(storehourEnd.slice(0, 2));
-
-  const storehourArrayConvert = (startTime, endTime) => {
-    const length = endTime - startTime;
-    let num = startTime;
-    const result = [];
-    for (let i = 0; i < length; i++) {
-      result.push(num++);
-    }
-
-    return result;
-  };
-
-  const storehour = storehourArrayConvert(start, end);
 
   return (dispatch) => {
     dispatch({ type: RESTAURANT_CREATE });
 
     if (data1 && data2 && data3 && data4 && data5) {
-      firebase.database().ref(`restaurantsTest/${city}/${gu}/${dong}/${categorize}`)
-        .push({
-          name,
-          phone,
-          address,
-          latlon,
-          storehour,
-          storehourString,
-          storeday,
-          coupons
-        })
+      let storeday = [];
+      let storedayString = '';
+      let a, b, c, d, e, f, g;
+
+      if (mon) { a = 1; }
+      if (tue) { b = 2; }
+      if (wed) { c = 3; }
+      if (thu) { d = 4; }
+      if (fri) { e = 5; }
+      if (sat) { f = 6; }
+      if (sun) { g = 0; }
+
+      if (all) {
+        storeday = [0, 1, 2, 3, 4, 5, 6];
+        storedayString = '매일';
+      } else {
+        const numbers = [a, b, c, d, e, f, g];
+        storeday = numbers.filter(number => {
+          return number !== undefined;
+        });
+
+        const dayString = storeday.reduce((result, num) => {
+          switch (num) {
+            case 1:
+            return `${result}월`;
+            case 2:
+            return `${result}화`;
+            case 3:
+            return `${result}수`;
+            case 4:
+            return `${result}목`;
+            case 5:
+            return `${result}금`;
+            case 6:
+            return `${result}토`;
+            case 0:
+            return `${result}일`;
+            default:
+            return result;
+          }
+        }, '');
+
+        const stringArrayConvert = dayString.split('');
+        storedayString = stringArrayConvert.join(', ');
+      }
+
+      const storehourString = [storehourStart, storehourEnd];
+      const start = Number(storehourStart.slice(0, 2));
+      const end = Number(storehourEnd.slice(0, 2));
+
+      const storehourArrayConvert = (startTime, endTime) => {
+        const length = endTime - startTime;
+        let num = startTime;
+        let result = [];
+        if (length > 0) {
+          for (let i = 0; i < length; i++) {
+            result.push(num++);
+          }
+        } else {
+          for (let i = 0; num <= 23; i++) {
+            result.push(num++);
+          }
+          for (let i = 0; i < endTime; i++) {
+            result.push(i);
+          }
+        }
+        return result;
+      };
+
+      const storehour = storehourArrayConvert(start, end);
+      const newRestaurantKey = firebase.database().ref().child(`restaurantsTest/${city}/${gu}/${dong}/${categorize}`).push().key;
+      const restaurantData = {
+        name,
+        phone,
+        address,
+        storehourString,
+        storedayString,
+        coupons
+      };
+
+      let updates = {};
+      updates[`restaurantsTest/${city}/${gu}/${dong}/${categorize}/${newRestaurantKey}`] = restaurantData;
+      updates[`restaurantDashboard/${newRestaurantKey}`] = {
+        name,
+        dong,
+        categorize,
+        coupons,
+        latlon,
+        storehour,
+        storeday,
+        admin: {
+          coupon: false,
+          bronzeCoupon: 0,
+          silverCoupon: 0,
+          goldCoupon: 0,
+          platinumCoupon: 0,
+        },
+        count: {
+          bronzeCouponUseCount: 0,
+          silverCouponUseCount: 0,
+          goldCouponUseCount: 0,
+          platinumCouponUseCount: 0,
+          bronzeCouponExposureCount: 0,
+          silverCouponExposureCount: 0,
+          goldCouponExposureCount: 0,
+          platinumCouponExposureCount: 0,
+        }
+      };
+
+      firebase.database().ref().update(updates)
         .then(() => dispatch({ type: RESTAURANT_CREATE_SUCCESS }))
         .catch(err => dispatch({ type: RESTAURANT_CREATE_FAIL, payload: err }));
     } else if (!data1) {

@@ -22,7 +22,6 @@ class RestaurantRegister extends Component {
 
 const mapStateToProps = (state) => {
   const { restaurant } = state.form;
-  console.log(restaurant);
   const { loading, message, err } = state.restaurantForm;
 
   return { restaurant, loading, message, err };

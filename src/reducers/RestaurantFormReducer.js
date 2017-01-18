@@ -19,16 +19,11 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case RESTAURANT_CREATE:
-      return { ...state, loading: true };
+      return { ...state, loading: true, message: '' };
     case RESTAURANT_CREATE_SUCCESS:
-      return { ...state, loading: false, message: '추가 완료'
-      };
+      return { ...state, loading: false, message: '추가 완료' };
     case RESTAURANT_CREATE_FAIL:
-      return { ...INITIAL_STATE,
-        loading: false,
-        message: '추가 실패',
-        err: action.payload
-      };
+      return { ...INITIAL_STATE, message: '추가 실패', err: action.payload };
     default:
       return state;
   }

@@ -46,3 +46,18 @@
 #SY-restaurant-button {
   margin-right: 10px;
 }
+
+#SY-h3 {
+  margin: 20px;
+}
+
+#SY-restaurant-detail {
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  background: white;
+}
+
+.SY-restaurant-detail-button {
+  margin: 10px;
+}

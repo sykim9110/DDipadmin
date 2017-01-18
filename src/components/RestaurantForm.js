@@ -3,14 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 
 import { Input } from './common';
 
-
 const RestaurantForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props;
   const { onClickRestaurantAdd, loading, message, err } = props;
 
   return (
     <form onSubmit={handleSubmit(onClickRestaurantAdd)}>
-      <legend>식당 추가</legend>
+      <h3 id="SY-h3">식당 추가</h3>
         <div className="form-check">
           <label className="form-check-label">
             <Field className="form-check-input" name="city" component="input" type="radio" value="인천" />
@@ -123,6 +122,7 @@ const RestaurantForm = (props) => {
     </form>
   );
 };
+
 
 export default reduxForm({
   form: 'restaurant'  // a unique identifier for this form

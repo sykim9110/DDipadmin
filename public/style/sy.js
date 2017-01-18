@@ -46,5 +46,23 @@ export default StyleSheet.create({
     },
     "SY-restaurant-button": {
         "marginRight": 10
+    },
+    "SY-h3": {
+        "marginTop": 20,
+        "marginRight": 20,
+        "marginBottom": 20,
+        "marginLeft": 20
+    },
+    "SY-restaurant-detail": {
+        "position": "fixed",
+        "top": "20%",
+        "left": "40%",
+        "background": "white"
+    },
+    "SY-restaurant-detail-button": {
+        "marginTop": 10,
+        "marginRight": 10,
+        "marginBottom": 10,
+        "marginLeft": 10
     }
 });

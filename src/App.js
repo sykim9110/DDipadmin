@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logged } from './actions';
-import Loading from './components/Loading';
+import { Loading } from './components/common';
 import LoginAdminContainer from './containers/LoginAdminContainer';
 import DDipAdmin from './containers/DDipAdmin';
 

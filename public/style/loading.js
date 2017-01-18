@@ -30,8 +30,5 @@ export default StyleSheet.create({
         "right": 0,
         "bottom": 0,
         "left": "50%"
-    },
-    "body": {
-        "background": "#774CFF"
     }
 });
