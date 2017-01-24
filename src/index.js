@@ -10,11 +10,11 @@ import reducers from './reducers';
 import routes from './routes';
 
 const config = {
-    apiKey: 'AIzaSyBh4Pyze3iagqodHWqjQMOMje7kgR1mtQ0',
-    authDomain: 'logic-f71cb.firebaseapp.com',
-    databaseURL: 'https://logic-f71cb.firebaseio.com',
-    storageBucket: 'logic-f71cb.appspot.com',
-    messagingSenderId: '953795730435'
+  apiKey: 'AIzaSyBuzKacaR91vUPumT1eOOyyend0gpk7uzY',
+  authDomain: 'ddip-a961a.firebaseapp.com',
+  databaseURL: 'https://ddip-a961a.firebaseio.com',
+  storageBucket: 'ddip-a961a.appspot.com',
+  messagingSenderId: '969560793396'
 };
 
 firebase.initializeApp(config);

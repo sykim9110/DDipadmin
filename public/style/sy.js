@@ -6,6 +6,10 @@ const {width, height, scale} = Dimensions.get("window"),
     vmax = Math.max(vw, vh);
 
 export default StyleSheet.create({
+    "*": {
+        "border": "1px solid rgba(0, 0, 0, 0.3)",
+        "boxSizing": "border-box"
+    },
     "container-fluid": {
         "height": 1080
     },
