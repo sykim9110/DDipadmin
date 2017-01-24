@@ -6,10 +6,6 @@ const {width, height, scale} = Dimensions.get("window"),
     vmax = Math.max(vw, vh);
 
 export default StyleSheet.create({
-    "*": {
-        "border": "1px solid rgba(0, 0, 0, 0.3)",
-        "boxSizing": "border-box"
-    },
     "container-fluid": {
         "height": 1080
     },
@@ -45,17 +41,8 @@ export default StyleSheet.create({
         "marginTop": 10,
         "marginLeft": 10
     },
-    "SY-errMessage": {
-        "paddingTop": 20
-    },
     "SY-restaurant-button": {
         "marginRight": 10
-    },
-    "SY-h3": {
-        "marginTop": 20,
-        "marginRight": 20,
-        "marginBottom": 20,
-        "marginLeft": 20
     },
     "SY-restaurant-detail": {
         "position": "fixed",

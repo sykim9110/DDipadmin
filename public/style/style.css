@@ -13,19 +13,147 @@
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { ... }
 
-#nav {
-  background-color: #2c3237;
+* {
+  /*border: 1px solid rgba(0, 0, 0, 0.1);*/
+  box-sizing: border-box;
 }
 
-#content {
-  background-color: blue;
+body {
+  margin: 0;
 }
 
-#SY-header {
-  padding: 20px;
-  background-color: black;
+h1 {
+  margin: 0px;
+  color: white;
+  text-align: center;
+  position: relative;
+  top: 10px;
 }
 
-#SY-img-ddip {
+h3 {
+  color: LightSalmon;
+}
+
+h4 {
+  margin: 15px;
+  text-decoration: underline;
+}
+
+td {
+  padding: 10px;
+}
+
+.header {
+  margin: 5px;
+  height: 55px;
   width: 100%;
+  background-color: rgba(255,215,0, 0.7);
+  /*border-bottom: 1px solid rgba(79, 81, 83, 0.1);*/
+}
+
+.navbar {
+  height: 45px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(79, 81, 83, 0.1);
+}
+.navbar-fixed {
+  height: 45px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(79, 81, 83, 0.1);
+  position: fixed;
+}
+.btn {
+  color: black;
+  position: relative;
+  margin: 10px 5px;
+  padding: 5px;
+  top: 12px;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
+  font-size: 18px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.btn-form {
+  margin-bottom: 50px;
+}
+.btn:hover {
+  background-color: rgba(79, 81, 83, 0.1);
+}
+.btn:active {
+  background-color: rgba(79, 81, 83, 0.3);
+  border-width: 0;
+  color: rgb(255, 255, 255);
+}
+.btn-fixed {
+  top: 0;
+  margin: 5px;
+  font-size: 12px;
+}
+
+.content {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.detail-container {
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table {
+  margin: auto;
+  width: 80%;
+  border-top: 2px solid rgba(79, 81, 83, 0.5);
+}
+.table-active {
+  background-color: rgba(175, 238, 238, 0.3);
+  transition-duration: 0.4s;
+}
+.table-active:hover {
+  background-color: rgba(175, 238, 238, 1);
+  transition-duration: 0.4s;
+}
+.table-danger {
+  background-color: rgba(255, 102, 102, 0.1);
+  transition-duration: 0.4s;
+}
+.table-danger:hover {
+  background-color: rgba(255, 102, 102, 0.8);
+}
+
+.form-div {
+  margin: 20px;
+}
+.form-div-items {
+  margin: 10px;
+}
+.input {
+  margin: 2px;
+  min-width: 200px;
+  max-width: 300px;
+  height: 35px;
+}
+.input-wide {
+  width: 500px;
+  height: 35px;
+}
+
+.list-group-item {
+  padding: 10px;
+  list-style-type: none;
+  list-style-position: inherit;
+}
+
+.err {
+  color: red;
 }

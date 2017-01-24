@@ -1,8 +1,3 @@
-* {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-}
-
 .container-fluid {
   height: 1080px;
 }
@@ -44,16 +39,8 @@
   margin-left: 10px;
 }
 
-#SY-errMessage {
-  padding-top: 20px;
-}
-
 #SY-restaurant-button {
   margin-right: 10px;
-}
-
-#SY-h3 {
-  margin: 20px;
 }
 
 #SY-restaurant-detail {

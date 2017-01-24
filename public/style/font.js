@@ -6,28 +6,11 @@ const {width, height, scale} = Dimensions.get("window"),
     vmax = Math.max(vw, vh);
 
 export default StyleSheet.create({
-    "body": {
-        "fontFamily": "'Nanum Gothic'"
+    "@CHARSET \"UTF-8\";@font-face": {
+        "fontFamily": "'NanumSquareR'",
+        "src": "url(../font/NanumSquareB.ttf) format('truetype')"
     },
-    "table": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "div": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "p": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "button": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "input": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "h4": {
-        "fontFamily": "'Nanum Gothic'"
-    },
-    "a": {
-        "fontFamily": "'Nanum Gothic'"
+    "*": {
+        "fontFamily": "'NanumSquareR'"
     }
 });

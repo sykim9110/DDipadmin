@@ -1,2 +1,10 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-body, table, div, p, button, input, h4, a {font-family:'Nanum Gothic'}
+@CHARSET "UTF-8";
+
+@font-face {
+  font-family: 'NanumSquareR';
+  src: url(../font/NanumSquareB.ttf) format('truetype');
+}
+
+* {
+  font-family: 'NanumSquareR';
+}

@@ -1,7 +1,11 @@
 import {
   RESTAURANT_LOADED,
   RESTAURANT_LOADED_SUCCESS,
-  RESTAURANT_LOADED_FAIL
+  RESTAURANT_LOADED_FAIL,
+  RESTAURANT_COUPON_ON,
+  RESTAURANT_COUPON_OFF,
+  RESTAURANT_COUPON_NUM_ADD,
+  RESTAURANT_COUPON_NAME_MODI
 } from '../actions/types';
 
 export type State = {
@@ -25,10 +29,18 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state,
         loading: false,
         data: action.payload[0],
-        detail: action.payload[1] 
+        detail: action.payload[1]
       };
     case RESTAURANT_LOADED_FAIL:
       return { ...INITIAL_STATE, err: action.payload };
+    case RESTAURANT_COUPON_ON:
+      return { ...state, loading: false };
+    case RESTAURANT_COUPON_OFF:
+      return { ...state, loading: false };
+    case RESTAURANT_COUPON_NUM_ADD:
+      return { ...state, loading: false };
+    case RESTAURANT_COUPON_NAME_MODI:
+      return { ...state, loading: false };
     default:
       return state;
   }

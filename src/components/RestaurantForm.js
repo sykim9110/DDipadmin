@@ -9,115 +9,121 @@ const RestaurantForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onClickRestaurantAdd)}>
-      <h3 id="SY-h3">식당 추가</h3>
-        <div className="form-check">
-          <label className="form-check-label">
-            <Field className="form-check-input" name="city" component="input" type="radio" value="인천" />
+      <h3>식당 추가</h3>
+        <div className="form-div">
+          <label>
+            <Field name="city" component="input" type="radio" value="인천" />
               인천
           </label>
         </div>
-        <div className="form-check">
-          <label className="form-check-label">
-            <Field className="form-check-input" name="gu" component="input" type="radio" value="연수구" />
+        <div className="form-div">
+          <label>
+            <Field name="gu" component="input" type="radio" value="연수구" />
               연수구
           </label>
         </div>
-        <div className="form-check">
-          <label className="form-check-label">
-            <Field className="form-check-input" name="dong" component="input" type="radio" value="송도동" />
+        <div className="form-div">
+          <label>
+            <Field name="dong" component="input" type="radio" value="송도동" />
               송도동
           </label>
         </div>
-        <div className="form-check">
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="한식" />한식</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="중식" />중식</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="일식" />일식</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="양식" />양식</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="분식" />분식</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="치킨" />치킨</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="피자" />피자</label>
-          <label className="form-check-label"><Field className="form-check-input" name="categorize" component="input" type="radio" value="아시아퓨전" />아시아퓨전</label>
+        <div className="form-div">
+          <label><Field name="categorize" component="input" type="radio" value="한식" />한식</label>
+          <label><Field name="categorize" component="input" type="radio" value="중식" />중식</label>
+          <label><Field name="categorize" component="input" type="radio" value="일식" />일식</label>
+          <label><Field name="categorize" component="input" type="radio" value="양식" />양식</label>
+          <label><Field name="categorize" component="input" type="radio" value="분식" />분식</label>
+          <label><Field name="categorize" component="input" type="radio" value="치킨" />치킨</label>
+          <label><Field name="categorize" component="input" type="radio" value="피자" />피자</label>
+          <label><Field name="categorize" component="input" type="radio" value="아시아퓨전" />아시아퓨전</label>
         </div>
-        <Input id="restaurant_name" flex="col-4" name="name" component="input" type="text" placeholder="이름">
-          식당 이름
+        <Input id="restaurant_name" styles="input" name="name" component="input" type="text" placeholder="이름">
+          <h4>식당 이름</h4>
         </Input>
-        <Input id="restaurant_phone" flex="col-4" name="phone" component="input" type="text" placeholder="032-123-1234">
-          전화번호
+        <Input id="restaurant_phone" styles="input" name="phone" component="input" type="text" placeholder="032-123-1234">
+          <h4>전화번호</h4>
         </Input>
-        <Input id="restaurant_address" flex="col-7" name="address" component="input" type="text" placeholder="주소">
-          주소
+        <Input id="restaurant_address" styles="input-wide" name="address" component="input" type="text" placeholder="주소">
+          <h4>주소</h4>
         </Input>
-        <div className="form-group">
-          <label>좌표</label>
-          <div className="row">
-            <div className="col-3">
-              <Field className="form-control" name="lat" component="input" type="number" placeholder="lat" />
+        <div className="form-div">
+          <h4>좌표</h4>
+          <div>
+            <div>
+              <Field className="input" name="lat" component="input" type="number" placeholder="lat" />
             </div>
-            <div className="col-3">
-              <Field className="form-control" name="lon" component="input" type="number" placeholder="lon" />
+            <div>
+              <Field className="input" name="lon" component="input" type="number" placeholder="lon" />
             </div>
           </div>
         </div>
-        <div>
-          <label>영업 시간</label>
-          <div className="row">
-            <div className="col-3">
-              <Field className="form-control" name="storehourStart" component="input" type="time" placeholder="시작 시간" />
+        <div className="form-div">
+          <h4>영업 시간</h4>
+          <div>
+            <div>
+              <Field className="input" name="storehourStart" component="input" type="time" placeholder="시작 시간" />
             </div>
-            <div className="col-3">
-              <Field className="form-control" name="storehourEnd" component="input" type="time" placeholder="마감 시간" />
+            <div>
+              <Field className="input" name="storehourEnd" component="input" type="time" placeholder="마감 시간" />
             </div>
           </div>
         </div>
-        <div className="form-check">
-          <label>영업 날</label>
-          <div className="row">
-            <div className="col-2">
-              <label className="form-check-label"><Field className="form-check-input" name="all" component="input" type="checkbox" /> 매일</label>
-            </div>
-            <label className="form-check-label"><Field className="form-check-input" name="mon" component="input" type="checkbox" /> 월</label>
-            <label className="form-check-label"><Field className="form-check-input" name="tue" component="input" type="checkbox" /> 화</label>
-            <label className="form-check-label"><Field className="form-check-input" name="wed" component="input" type="checkbox" /> 수</label>
-            <label className="form-check-label"><Field className="form-check-input" name="thu" component="input" type="checkbox" /> 목</label>
-            <label className="form-check-label"><Field className="form-check-input" name="fri" component="input" type="checkbox" /> 금</label>
-            <label className="form-check-label"><Field className="form-check-input" name="sat" component="input" type="checkbox" /> 토</label>
-            <label className="form-check-label"><Field className="form-check-input" name="sun" component="input" type="checkbox" /> 일</label>
+        <div className="form-div">
+          <h4>영업 날</h4>
+          <div className="form-div-items">
+            <label><Field name="all" component="input" type="checkbox" /> 매일</label>
+          </div>
+          <div className="form-div-items">
+            <label><Field name="mon" component="input" type="checkbox" /> 월</label>
+            <label><Field name="tue" component="input" type="checkbox" /> 화</label>
+            <label><Field name="wed" component="input" type="checkbox" /> 수</label>
+            <label><Field name="thu" component="input" type="checkbox" /> 목</label>
+            <label><Field name="fri" component="input" type="checkbox" /> 금</label>
+            <label><Field name="sat" component="input" type="checkbox" /> 토</label>
+            <label><Field name="sun" component="input" type="checkbox" /> 일</label>
           </div>
         </div>
-        <div>
-          <label>쿠폰</label>
-          <div className="col-3">
-            <label>브론즈 쿠폰</label>
-            <Field className="form-control" name="bronzeCoupon" component="select">
+        <div className="form-div">
+          <h4>쿠폰</h4>
+          <div className="form-div-items">
+            <label>브론즈 쿠폰 </label>
+            <Field name="bronzeCoupon" component="select">
               <option></option>
               <option value="10%">10%</option>
               <option value="음료수">음료수</option>
             </Field>
-            <label>실버 쿠폰</label>
-            <Field className="form-control" name="silverCoupon" component="select">
+          </div>
+          <div className="form-div-items">
+            <label>실버 쿠폰 </label>
+            <Field name="silverCoupon" component="select">
               <option></option>
               <option value="20%">20%</option>
               <option value="사이드메뉴">사이드메뉴</option>
             </Field>
-            <label>골드 쿠폰</label>
-            <Field className="form-control" name="goldCoupon" component="select">
+          </div>
+          <div className="form-div-items">
+            <label>골드 쿠폰 </label>
+            <Field name="goldCoupon" component="select">
               <option></option>
               <option value="30%">30%</option>
               <option value="40%">40%</option>
             </Field>
-            <label>플래티넘 쿠폰</label>
-            <Field className="form-control" name="platinumCoupon" component="select">
+          </div>
+          <div className="form-div-items">
+            <label>플래티넘 쿠폰 </label>
+            <Field name="platinumCoupon" component="select">
               <option></option>
               <option value="50%">50%</option>
               <option value="주메뉴">주메뉴</option>
             </Field>
           </div>
         </div>
+        {err && <p className="err">{err}</p>}
+        {message && <p id="SY-errMessage">{message}</p>}
         <div>
-          <p id="SY-errMessage">{err}</p>
-          <p id="SY-errMessage">{message}</p>
-          <button id="SY-restForm" className="btn btn-primary" type="submit" disabled={pristine || submitting}>{loading ? 'loading' : '식당 추가' }</button>
-          <button id="SY-restForm" className="btn btn-primary" disabled={pristine || submitting} onClick={reset}>초기화</button>
+          <button className="btn btn-form" type="submit" disabled={pristine || submitting}>{loading ? 'loading' : '식당 추가' }</button>
+          <button className="btn btn-form" disabled={pristine || submitting} onClick={reset}>초기화</button>
         </div>
     </form>
   );
