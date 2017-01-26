@@ -24,6 +24,7 @@ export const restaurantsLoad = (op) => {
         });
 
         if (restaurantArray) {
+          console.log(restaurantArray);
           resolve(restaurantArray);
         } else {
           reject('서버 에러');

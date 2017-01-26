@@ -44,7 +44,7 @@ td {
 }
 
 .header {
-  margin: 5px;
+  margin: 0;
   height: 55px;
   width: 100%;
   background-color: rgba(255,215,0, 0.7);
