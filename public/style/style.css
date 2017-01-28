@@ -148,6 +148,13 @@ td {
 .table-danger:hover {
   background-color: rgba(255, 102, 102, 0.8);
 }
+.table-none {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition-duration: 0.4s;
+}
+.table-none:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
 .form-div {
   margin: 20px;
