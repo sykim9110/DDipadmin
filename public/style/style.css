@@ -39,6 +39,11 @@ h4 {
   text-decoration: underline;
 }
 
+h5 {
+  margin: 5px;
+  font-size: 20px;
+}
+
 td {
   padding: 10px;
 }
@@ -47,7 +52,7 @@ td {
   margin: 0;
   height: 55px;
   width: 100%;
-  background-color: rgba(255,215,0, 0.7);
+  background-color: rgba(255, 140, 105, 1);
   /*border-bottom: 1px solid rgba(79, 81, 83, 0.1);*/
 }
 
@@ -64,6 +69,13 @@ td {
   border-bottom: 1px solid rgba(79, 81, 83, 0.1);
   position: fixed;
 }
+.navbar-header {
+  background-color: rgba(255, 140, 105, 1);
+}
+.navbar-items {
+  margin-top: 15px;
+}
+
 .btn {
   color: black;
   position: relative;
@@ -94,6 +106,12 @@ td {
   margin: 5px;
   font-size: 12px;
 }
+.btn-header {
+  color: white;
+  border: 0;
+  padding: 8px;
+  background-color: inherit;
+}
 
 .content {
   width: 80%;
@@ -106,7 +124,7 @@ td {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   position: fixed;
-  top: 20%;
+  top: 0;
   left: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -156,4 +174,25 @@ td {
 
 .err {
   color: red;
+}
+
+#percent {
+  font-size: 8px;
+}
+#bronze {
+  color: rgb(205, 127, 50);
+}
+#silver {
+  color: rgb(192, 192, 192);
+}
+#gold {
+  color: rgb(255, 215, 0);
+}
+#platinum {
+  color: rgb(94,199,161);
+}
+
+#text_1 {
+  font-size: 40px;
+  margin: 20px;
 }

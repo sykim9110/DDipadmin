@@ -21,14 +21,17 @@ export default StyleSheet.create({
         "animationTimingFunction": "linear",
         "height": 60,
         "width": 60,
-        "border": "8px solid black",
+        "border": "8px solid LightSalmon",
         "borderRightColor": "transparent",
         "borderRadius": "50%",
         "display": "inline-block",
+        "position": "relative",
+        "top": "-50%",
+        "left": "-50%"
+    },
+    "loading-spinner-container": {
         "position": "absolute",
         "top": "50%",
-        "right": 0,
-        "bottom": 0,
         "left": "50%"
     }
 });

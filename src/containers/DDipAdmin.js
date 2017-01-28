@@ -6,7 +6,7 @@ class DDipAdmin extends Component {
     return (
       <div>
         <div className="header">
-          <h1>관리자</h1>
+          <h1>밥정너 관리자</h1>
         </div>
         <Navbar />
         <div>

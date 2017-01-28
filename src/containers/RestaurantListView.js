@@ -34,11 +34,31 @@ class RestaurantListView extends Component {
     this.renderRestaurantTable(nextProps.data);
   }
 
+  percentCalculator(x, b, s, g, p) {
+    if (x) {
+      return <span id="percent">({Math.floor((x / (b + s + g + p)) * 100)}%)</span>;
+    }
+    return null;
+  }
+
   renderRestaurantTable(data) {
     if (data) {
       const restaurants = data;
       let num = 1;
       const result = restaurants.map(rest => {
+        const b = rest.admin.bronzeCoupon;
+        const s = rest.admin.silverCoupon;
+        const g = rest.admin.goldCoupon;
+        const p = rest.admin.platinumCoupon;
+        const bU = rest.count.bronzeCouponUseCount;
+        const sU = rest.count.silverCouponUseCount;
+        const gU = rest.count.goldCouponUseCount;
+        const pU = rest.count.platinumCouponUseCount;
+        const bE = rest.count.bronzeCouponExposureCount;
+        const sE = rest.count.silverCouponExposureCount;
+        const gE = rest.count.goldCouponExposureCount;
+        const pE = rest.count.platinumCouponExposureCount;
+
         return (
           <tr
             className={rest.admin.coupon ? 'table-active' : 'table-danger'}
@@ -48,10 +68,24 @@ class RestaurantListView extends Component {
             <th scope="row">{num++}</th>
             <td>{rest.name}</td>
             <td>{rest.categorize}</td>
-            <td>{rest.admin.bronzeCoupon}</td>
-            <td>{rest.admin.silverCoupon}</td>
-            <td>{rest.admin.goldCoupon}</td>
-            <td>{rest.admin.platinumCoupon}</td>
+            <td>{b} {this.percentCalculator(b, b, s, g, p)}</td>
+            <td>{s} {this.percentCalculator(s, b, s, g, p)}</td>
+            <td>{g} {this.percentCalculator(g, b, s, g, p)}</td>
+            <td>{p} {this.percentCalculator(p, b, s, g, p)}</td>
+            <td>
+              <span id="bronze">{bE} </span>
+              <span id="silver">{sE} </span>
+              <span id="gold">{gE} </span>
+              <span id="platinum">{pE} </span>
+              | {bE + sE + gE + pE}
+            </td>
+            <td>
+              <span id="bronze">{bU} </span>
+              <span id="silver">{sU} </span>
+              <span id="gold">{gU} </span>
+              <span id="platinum">{pU} </span>
+              | {bU + sU + gU + pU}
+            </td>
           </tr>
         );
       });
@@ -69,7 +103,7 @@ class RestaurantListView extends Component {
     if (!this.state.detailModi) {
       return (
         <div className="detail-container">
-          <ul className="list-group">
+          <div className="list-group">
             <li className="list-group-item">
               <button
                 className="btn"
@@ -168,13 +202,13 @@ class RestaurantListView extends Component {
                   끄기
                 </button>
               </li>
-            </ul>
+            </div>
           </div>
         );
     }
     return (
       <div className="detail-container">
-        <ul className="list-group">
+        <div className="list-group">
           <li className="list-group-item">
             <button
               className="btn"
@@ -189,6 +223,7 @@ class RestaurantListView extends Component {
               쿠폰 사용 OFF
             </button>
           </li>
+          <li className="list-group-item">{this.state.detail}</li>
           <li className="list-group-item">{result.name}</li>
           <li className="list-group-item">{result.phone}</li>
           <li className="list-group-item">{result.address}</li>
@@ -264,7 +299,7 @@ class RestaurantListView extends Component {
                 끄기
               </button>
             </li>
-          </ul>
+          </div>
       </div>
     );
   }
@@ -312,6 +347,8 @@ class RestaurantListView extends Component {
               <th>실버</th>
               <th>골드</th>
               <th>플래티넘</th>
+              <th>노출</th>
+              <th>사용</th>
             </tr>
           </thead>
           {this.state.table}

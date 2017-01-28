@@ -61,16 +61,18 @@
   animation-timing-function: linear;
   height: 60px;
   width: 60px;
-  border: 8px solid black;
+  border: 8px solid LightSalmon;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
 }
-
-.loading-spinner {
+.loading-spinner-container {
   position: absolute;
   top: 50%;
-  right: 0;
-  bottom: 0;
   left: 50%;
+}
+.loading-spinner {
+  position: relative;;
+  top: -50%;
+  left: -50%;
 }

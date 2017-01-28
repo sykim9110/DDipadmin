@@ -11,6 +11,7 @@ import {
 export type State = {
   loading: boolean,
   data: ?Object,
+  detail: ?Object,
   err: ?String
 }
 

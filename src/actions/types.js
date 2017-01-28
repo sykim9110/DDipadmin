@@ -15,3 +15,6 @@ export const RESTAURANT_COUPON_ON = 'restaurant_coupon_use';
 export const RESTAURANT_COUPON_OFF = 'restaurant_coupon_not_used';
 export const RESTAURANT_COUPON_NUM_ADD = 'restaurant_coupon_num_add';
 export const RESTAURANT_COUPON_NAME_MODI = 'resaurant_coupon_name_modi';
+export const RESTAURANT_DASHBOARD_LOADED = 'restaurant_dashboard_loaded';
+
+export const USER_INFO_LOADED = 'user_info_loaded';

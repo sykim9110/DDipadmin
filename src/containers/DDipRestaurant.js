@@ -5,7 +5,10 @@ class DDipRestaurant extends Component {
   render() {
     return (
       <div>
-        <div className="navbar">
+        <div className="navbar navbar-items">
+          <Link to="/restaurant/dashboard" className="btn">
+            대시보드
+          </Link>
           <Link to="/restaurant/list" className="btn">
             식당 리스트
           </Link>

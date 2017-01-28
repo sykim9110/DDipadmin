@@ -53,19 +53,30 @@ export const restaurantsLoad = (op) => {
 
         const all = ko.concat(ja, zh, en, sc, ch, pi, as);
 
-        if (op === 'name') {
-          restaurantArray.sort((a, b) => {
-            return a.name < b.name ? -1 : a.name < b.name ? 1 : 0;
-          });
-        }
-        if (op === 'categorize') {
-          restaurantArray.sort((a, b) => {
-            return a.categorize < b.categorize ? -1 : a.categorize > b.categorize ? 1 : 0;
-          });
-        }
+        const restaurantSort = (x, arr, o) => {
+          if (x === o) {
+            arr.sort((a, b) => {
+              if (a[o] < b[o]) {
+                return -1;
+              } else if (a[o] > b[o]) {
+                return 1;
+              }
+              return 0;
+            });
+          }
+        };
+
+        restaurantSort(op, restaurantArray, 'name');
+        restaurantSort(op, restaurantArray, 'categorize');
+
         if (op === undefined) {
           restaurantArray.sort((a, b) => {
-            return a.admin.coupon > b.admin.coupon ? -1 : a.admin.coupon < b.admin.coupon ? 1 : 0;
+            if (a.admin.coupon > b.admin.coupon) {
+              return -1;
+            } else if (a.admin.coupon < b.admin.coupon) {
+              return 1;
+            }
+            return 0;
           });
         }
 
