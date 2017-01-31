@@ -33,6 +33,17 @@ class UserDashboard extends Component {
     });
   }
 
+  componentWillUnmount() {
+    const rootRef = firebase.database().ref().child('profiles');
+    const couponRef = firebase.database().ref().child('couponDashboard');
+    const shakeRef = couponRef.child('shakeCount');
+    const useRef = couponRef.child('useCount');
+
+    rootRef.off();
+    shakeRef.off();
+    useRef.off();
+  }
+
   render() {
     const data = {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -152,7 +163,7 @@ class UserDashboard extends Component {
         }
       }
     };
-    
+
     return (
       <div>
         <h3>회원 대시보드</h3>

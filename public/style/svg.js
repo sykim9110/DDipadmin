@@ -8,14 +8,14 @@ const {width, height, scale} = Dimensions.get("window"),
 export default StyleSheet.create({
     "lock-cls-1": {
         "fill": "none",
-        "stroke": "#737373",
+        "stroke": "LightSalmon",
         "strokeWidth": 2,
         "strokeLinecap": "round",
         "strokeLinejoin": "round"
     },
     "lock-cls-2": {
         "fill": "none",
-        "stroke": "#737373",
+        "stroke": "LightSalmon",
         "strokeWidth": 2,
         "strokeMiterlimit": 10
     },

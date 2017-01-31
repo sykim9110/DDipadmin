@@ -90,7 +90,6 @@ export const restaurantsLoad = (op) => {
 
 export const buttonCouponOn = (uid) => {
   return (dispatch) => {
-    dispatch({ type: RESTAURANT_LOADED });
     firebase.database().ref(`restaurantDashboard/${uid}/admin`)
     .once('value', snapshot => {
       const DB = snapshot.val();
@@ -103,7 +102,6 @@ export const buttonCouponOn = (uid) => {
 
 export const buttonCouponOff = (uid) => {
   return (dispatch) => {
-    dispatch({ type: RESTAURANT_LOADED });
     firebase.database().ref(`restaurantDashboard/${uid}/admin`)
     .once('value', snapshot => {
       const DB = snapshot.val();
@@ -116,7 +114,6 @@ export const buttonCouponOff = (uid) => {
 
 export const buttonCouponNumAdd = (uid, b, s, g, p) => {
   return (dispatch) => {
-    dispatch({ type: RESTAURANT_LOADED });
     firebase.database().ref(`restaurantDashboard/${uid}/admin`)
     .once('value', snapshot => {
       const DB = snapshot.val();
@@ -134,7 +131,6 @@ export const buttonCouponNumAdd = (uid, b, s, g, p) => {
 
 export const buttonCouponNameModi = (uid, ca, b, s, g, p) => {
   return (dispatch) => {
-    dispatch({ type: RESTAURANT_LOADED });
     const DashboardModi = new Promise((resolve, reject) => {
       firebase.database().ref(`restaurantDashboard/${uid}/coupons`)
       .set([b, s, g, p])

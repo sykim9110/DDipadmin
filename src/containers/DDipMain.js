@@ -10,8 +10,23 @@ class DDipMain extends Component {
     });
   }
 
+  onClickfirebaseLogout() {
+    firebase.auth().signOut();
+  }
+
   render() {
-    return <div onClick={this.onClickFirebase.bind(this)}> 메인 페이지 </div>;
+    return (
+      <div onClick={this.onClickFirebase.bind(this)}>
+        메인 페이지
+        <p style={{ color: 'red' }}>관리자 사용종료시 로그아웃 필수</p>
+        <button
+          onClick={this.onClickfirebaseLogout.bind(this)}
+          className="btn"
+        >
+          로그아웃
+        </button>
+      </div>
+    );
   }
 }
 

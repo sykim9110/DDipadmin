@@ -52,7 +52,7 @@ export default StyleSheet.create({
     "form button": {
         "textTransform": "uppercase",
         "outline": 0,
-        "background": "black",
+        "background": "rgba(255, 140, 105, 0.5)",
         "width": "100%",
         "border": 0,
         "paddingTop": 15,
@@ -66,12 +66,12 @@ export default StyleSheet.create({
         "cursor": "pointer"
     },
     "form button:hover": {
-        "background": "#4c4b4b"
+        "background": "rgba(255, 140, 105, 1)"
     },
     "form button:active": {
-        "background": "#4c4b4b"
+        "background": "rgba(255, 140, 105, 1)"
     },
     "form button:focus": {
-        "background": "#4c4b4b"
+        "background": "rgba(255, 140, 105, 1)"
     }
 });

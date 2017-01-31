@@ -13,7 +13,7 @@ class UserListView extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const rootRef = firebase.database().ref().child('profiles');
     rootRef.on('value', snap => {
       const result = _.map(snap.val(), (val, uid) => {
@@ -24,13 +24,18 @@ class UserListView extends Component {
     });
   }
 
+  componentWillUnmount() {
+    const rootRef = firebase.database().ref().child('profiles');
+    rootRef.off();
+  }
+
   userdataTableRender() {
     let num = 1;
     if (this.state.userdata) {
       const { userdata } = this.state;
       const result = userdata.map(data => {
         return (
-          <tr className="table-none" key={data.uid}>
+          <tr className="table-none" key={data.uid} onClick={() => { console.log(data.uid); }}>
             <th scope="row">{num++}</th>
             <td>{data.displayName}</td>
             <td>{data.email}</td>
@@ -53,7 +58,7 @@ class UserListView extends Component {
     }
     return (
       <div className="container">
-        <h3>식당 리스트</h3>
+        <h3>회원 리스트</h3>
         <div className="navbar">
           <button
             className="btn btn-fixed"

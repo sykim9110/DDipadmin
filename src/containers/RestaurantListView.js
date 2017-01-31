@@ -1,5 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as firebase from 'firebase';
 
 import {
   restaurantsLoad,
@@ -11,27 +13,106 @@ import {
 import { Loading } from '../components/common';
 
 class RestaurantListView extends Component {
-  state = {
-    detail: false,
-    detailModi: false,
-    categorize: '',
-    table: null,
-    bronze: 0,
-    silver: 0,
-    gold: 0,
-    platinum: 0,
-    bronzeName: '',
-    silverName: '',
-    goldName: '',
-    platinumName: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      dashboard: null,
+      dbDetail: null,
+      detail: false,
+      detailModi: false,
+      categorize: '',
+      table: null,
+      bronze: 0,
+      silver: 0,
+      gold: 0,
+      platinum: 0,
+      bronzeName: '',
+      silverName: '',
+      goldName: '',
+      platinumName: ''
+    };
   }
 
-  componentWillMount() {
-    this.props.restaurantsLoad();
+  componentDidMount() {
+    const rootRef = firebase.database().ref().child('restaurantDashboard');
+    const restRef = firebase.database().ref().child('restaurantsTest/인천/연수구/송도동');
+    rootRef.on('value', snapshot => {
+      const DB = snapshot.val();
+      const restaurantArray = _.map(DB, (val, uid) => {
+        return { ...val, uid };
+      });
+      restaurantArray.sort((a, b) => {
+        if (a.admin.coupon > b.admin.coupon) {
+          return -1;
+        } else if (a.admin.coupon < b.admin.coupon) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({ dashboard: restaurantArray });
+    });
+    restRef.on('value', snap => {
+      const dbdetail = snap.val();
+
+      const restaurantsArrayConvert = (db, categorize) => {
+        const result = _.map(db[categorize], (val, uid) => {
+          return { ...val, uid };
+        });
+        return result;
+      };
+
+      const ko = restaurantsArrayConvert(dbdetail, '한식');
+      const ja = restaurantsArrayConvert(dbdetail, '일식');
+      const zh = restaurantsArrayConvert(dbdetail, '중식');
+      const en = restaurantsArrayConvert(dbdetail, '양식');
+      const sc = restaurantsArrayConvert(dbdetail, '분식');
+      const ch = restaurantsArrayConvert(dbdetail, '치킨');
+      const pi = restaurantsArrayConvert(dbdetail, '피자');
+      const as = restaurantsArrayConvert(dbdetail, '아시아퓨전');
+
+      const all = ko.concat(ja, zh, en, sc, ch, pi, as);
+      this.setState({ dbDetail: all });
+    });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.renderRestaurantTable(nextProps.data);
+  componentWillUnmount() {
+    const rootRef = firebase.database().ref().child('restaurantDashboard');
+    const restRef = firebase.database().ref().child('restaurantsTest/인천/연수구/송도동');
+
+    rootRef.off();
+    restRef.off();
+  }
+
+  restaurantSort(x, arr, o) {
+    if (x === o) {
+      arr.sort((a, b) => {
+        if (a[o] < b[o]) {
+          return -1;
+        } else if (a[o] > b[o]) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  }
+
+  buttonSort(op) {
+    const dashboard = this.state.dashboard;
+    this.restaurantSort(op, dashboard, 'name');
+    this.restaurantSort(op, dashboard, 'categorize');
+
+    if (op === 'coupon') {
+      dashboard.sort((a, b) => {
+        if (a.admin.coupon > b.admin.coupon) {
+          return -1;
+        } else if (a.admin.coupon < b.admin.coupon) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    this.setState({ dashboard });
   }
 
   percentCalculator(x, b, s, g, p) {
@@ -41,9 +122,9 @@ class RestaurantListView extends Component {
     return null;
   }
 
-  renderRestaurantTable(data) {
-    if (data) {
-      const restaurants = data;
+  renderRestaurantTable() {
+    if (this.state.dashboard) {
+      const restaurants = this.state.dashboard;
       let num = 1;
       const result = restaurants.map(rest => {
         const b = rest.admin.bronzeCoupon;
@@ -89,13 +170,13 @@ class RestaurantListView extends Component {
           </tr>
         );
       });
-      this.setState({ table: <tbody>{result}</tbody> });
+      return <tbody>{result}</tbody>;
     }
-    return <tbody></tbody>;
+    return <tbody>{null}</tbody>;
   }
 
   renderRestaurantTableDetail() {
-    const details = this.props.detail;
+    const details = this.state.dbDetail;
     const result = details.find(detail => {
       return detail.uid === this.state.detail;
     });
@@ -314,27 +395,21 @@ class RestaurantListView extends Component {
         <div className="navbar">
           <button
             className="btn btn-fixed"
-            onClick={() => this.props.restaurantsLoad()}
+            onClick={() => this.buttonSort('coupon')}
           >
-            새로고침
+            쿠폰순
           </button>
           <button
             className="btn btn-fixed"
-            onClick={() => this.props.restaurantsLoad('categorize')}
+            onClick={() => this.buttonSort('categorize')}
           >
             분류순
           </button>
           <button
             className="btn btn-fixed"
-            onClick={() => this.props.restaurantsLoad('name')}
+            onClick={() => this.buttonSort('name')}
           >
             이름순
-          </button>
-          <button
-            className="btn btn-fixed"
-            onClick={() => this.props.restaurantsLoad('register')}
-          >
-            등록순
           </button>
         </div>
         <table className="table">
@@ -351,7 +426,7 @@ class RestaurantListView extends Component {
               <th>사용</th>
             </tr>
           </thead>
-          {this.state.table}
+          {this.renderRestaurantTable()}
         </table>
         {this.state.detail ? this.renderRestaurantTableDetail() : null}
       </div>
