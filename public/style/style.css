@@ -31,7 +31,7 @@ h1 {
 }
 
 h3 {
-  color: LightSalmon;
+  color: #F6D155;
 }
 
 h4 {
@@ -52,7 +52,7 @@ td {
   margin: 0;
   height: 55px;
   width: 100%;
-  background-color: rgba(255, 140, 105, 1);
+  background-color: #F6D155;
   /*border-bottom: 1px solid rgba(79, 81, 83, 0.1);*/
 }
 .link-none {
@@ -73,7 +73,7 @@ td {
   position: fixed;
 }
 .navbar-header {
-  background-color: rgba(255, 140, 105, 1);
+  background-color: #F6D155;
 }
 .navbar-items {
   margin-top: 15px;

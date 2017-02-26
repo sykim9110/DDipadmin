@@ -30,13 +30,14 @@ const RestaurantForm = (props) => {
         </div>
         <div className="form-div">
           <label><Field name="categorize" component="input" type="radio" value="한식" />한식</label>
-          <label><Field name="categorize" component="input" type="radio" value="중식" />중식</label>
-          <label><Field name="categorize" component="input" type="radio" value="일식" />일식</label>
           <label><Field name="categorize" component="input" type="radio" value="양식" />양식</label>
-          <label><Field name="categorize" component="input" type="radio" value="분식" />분식</label>
+          <label><Field name="categorize" component="input" type="radio" value="일식" />일식</label>
+          <label><Field name="categorize" component="input" type="radio" value="중식" />중식</label>
           <label><Field name="categorize" component="input" type="radio" value="치킨" />치킨</label>
           <label><Field name="categorize" component="input" type="radio" value="피자" />피자</label>
-          <label><Field name="categorize" component="input" type="radio" value="아시아퓨전" />아시아퓨전</label>
+          <label><Field name="categorize" component="input" type="radio" value="분식" />분식</label>
+          <label><Field name="categorize" component="input" type="radio" value="세계요리" />세계요리</label>
+          <label><Field name="categorize" component="input" type="radio" value="패스트푸드" />패스트푸드</label>
         </div>
         <Input id="restaurant_name" styles="input" name="name" component="input" type="text" placeholder="이름">
           <h4>식당 이름</h4>
