@@ -165,6 +165,9 @@ td {
 .form-div-items {
   margin: 10px;
 }
+.form-menu {
+  border: 1px solid black;
+}
 .input {
   margin: 2px;
   min-width: 200px;
@@ -190,16 +193,16 @@ td {
   font-size: 8px;
 }
 #bronze {
-  color: rgb(205, 127, 50);
-}
-#silver {
   color: rgb(192, 192, 192);
 }
+#silver {
+  color: rgb(0,0,255);
+}
 #gold {
-  color: rgb(255, 215, 0);
+  color: rgb(128,0,128);
 }
 #platinum {
-  color: rgb(94,199,161);
+  color: rgb(255,215,0);
 }
 
 #text_1 {

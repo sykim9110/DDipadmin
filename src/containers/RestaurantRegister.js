@@ -5,7 +5,7 @@ import RestaurantForm from '../components/RestaurantForm';
 
 class RestaurantRegister extends Component {
   restaurantAdd() {
-    this.props.restaurantCreate(this.props.restaurant);
+    this.props.restaurantCreate(this.props.restaurant, this.props.menu);
   }
 
   render() {
@@ -21,10 +21,11 @@ class RestaurantRegister extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { restaurant } = state.form;
+  const { restaurant, menu } = state.form;
+  console.log(state.form.menu);
   const { loading, message, err } = state.restaurantForm;
 
-  return { restaurant, loading, message, err };
+  return { restaurant, menu, loading, message, err };
 };
 
 export default connect(mapStateToProps, { restaurantCreate })(RestaurantRegister);

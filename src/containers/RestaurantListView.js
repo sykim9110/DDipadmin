@@ -34,49 +34,37 @@ class RestaurantListView extends Component {
   }
 
   componentDidMount() {
-    const rootRef = firebase.database().ref().child('restaurantDashboard');
-    const restRef = firebase.database().ref().child('restaurantsTest/인천/연수구/송도동');
-    rootRef.on('value', snapshot => {
+    const rootRef = firebase.database().ref().child('restaurants');
+    const dashboardRef = rootRef.child('dashboard');
+    const infoRef = rootRef.child('info/all');
+
+    dashboardRef.on('value', snapshot => {
       const DB = snapshot.val();
-      const restaurantArray = _.map(DB, (val, uid) => {
+      const restaurantsArray = _.map(DB, (val, uid) => {
         return { ...val, uid };
       });
-      restaurantArray.sort((a, b) => {
-        if (a.admin.coupon > b.admin.coupon) {
+      restaurantsArray.sort((a, b) => {
+        if (a.coupon > b.coupon) {
           return -1;
-        } else if (a.admin.coupon < b.admin.coupon) {
+        } else if (a.coupon < b.coupon) {
           return 1;
         }
         return 0;
       });
-      this.setState({ dashboard: restaurantArray });
+      console.log(restaurantsArray);
+      this.setState({ dashboard: restaurantsArray });
     });
-    restRef.on('value', snap => {
-      const dbdetail = snap.val();
-
-      const restaurantsArrayConvert = (db, categorize) => {
-        const result = _.map(db[categorize], (val, uid) => {
-          return { ...val, uid };
-        });
-        return result;
-      };
-
-      const ko = restaurantsArrayConvert(dbdetail, '한식');
-      const ja = restaurantsArrayConvert(dbdetail, '일식');
-      const zh = restaurantsArrayConvert(dbdetail, '중식');
-      const en = restaurantsArrayConvert(dbdetail, '양식');
-      const sc = restaurantsArrayConvert(dbdetail, '분식');
-      const ch = restaurantsArrayConvert(dbdetail, '치킨');
-      const pi = restaurantsArrayConvert(dbdetail, '피자');
-      const as = restaurantsArrayConvert(dbdetail, '아시아퓨전');
-
-      const all = ko.concat(ja, zh, en, sc, ch, pi, as);
-      this.setState({ dbDetail: all });
+    infoRef.on('value', snapshot => {
+      const DB = snapshot.val();
+      const infoArray = _.map(DB, (val, uid) => {
+        return { ...val, uid };
+      });
+      this.setState({ dbDetail: infoArray });
     });
   }
 
   componentWillUnmount() {
-    const rootRef = firebase.database().ref().child('restaurantDashboard');
+    const rootRef = firebase.database().ref().child('restaurants/dashboard');
     const restRef = firebase.database().ref().child('restaurantsTest/인천/연수구/송도동');
 
     rootRef.off();
@@ -127,22 +115,22 @@ class RestaurantListView extends Component {
       const restaurants = this.state.dashboard;
       let num = 1;
       const result = restaurants.map(rest => {
-        const b = rest.admin.bronzeCoupon;
-        const s = rest.admin.silverCoupon;
-        const g = rest.admin.goldCoupon;
-        const p = rest.admin.platinumCoupon;
-        const bU = rest.count.bronzeCouponUseCount;
-        const sU = rest.count.silverCouponUseCount;
-        const gU = rest.count.goldCouponUseCount;
-        const pU = rest.count.platinumCouponUseCount;
-        const bE = rest.count.bronzeCouponExposureCount;
-        const sE = rest.count.silverCouponExposureCount;
-        const gE = rest.count.goldCouponExposureCount;
-        const pE = rest.count.platinumCouponExposureCount;
+        const b = rest.quantity.gray
+        const s = rest.quantity.blue;
+        const g = rest.quantity.purple
+        const p = rest.quantity.gold
+        const bU = rest.count.grayUse;
+        const sU = rest.count.blueUse;
+        const gU = rest.count.purpleUse;
+        const pU = rest.count.goldUse;
+        const bE = rest.count.grayExposure;
+        const sE = rest.count.blueExposure;
+        const gE = rest.count.purpleExposure;
+        const pE = rest.count.goldExposure;
 
         return (
           <tr
-            className={rest.admin.coupon ? 'table-active' : 'table-danger'}
+            className={rest.coupon ? 'table-active' : 'table-danger'}
             key={rest.uid}
             onClick={() => this.setState({ detail: rest.uid, categorize: rest.categorize })}
           >
@@ -180,6 +168,7 @@ class RestaurantListView extends Component {
     const result = details.find(detail => {
       return detail.uid === this.state.detail;
     });
+    console.log(result);
 
     if (!this.state.detailModi) {
       return (
@@ -204,35 +193,35 @@ class RestaurantListView extends Component {
             <li className="list-group-item">{result.address}</li>
             <li className="list-group-item">{result.storedayString}</li>
             <li className="list-group-item">{`${result.storehourString[0]}~${result.storehourString[1]}`}</li>
-            <li className="list-group-item">브론즈: {result.coupons[0]}</li>
-            <li className="list-group-item">실버: {result.coupons[1]}</li>
-            <li className="list-group-item">골드: {result.coupons[2]}</li>
-            <li className="list-group-item">플래티넘: {result.coupons[3]}</li>
+            <li className="list-group-item">gray: {result.coupons[0]}</li>
+            <li className="list-group-item">blue: {result.coupons[1]}</li>
+            <li className="list-group-item">purple: {result.coupons[2]}</li>
+            <li className="list-group-item">gold: {result.coupons[3]}</li>
             <li className="list-group-item">
               <div>
                 <div className="form-div-items">
-                  브 <input
+                  gray <input
                     type="number"
                     value={this.state.bronze}
                     onChange={e => this.setState({ bronze: e.target.value })}
                   />
                 </div>
                 <div className="form-div-items">
-                  실 <input
+                  blue <input
                     type="number"
                     value={this.state.silver}
                     onChange={e => this.setState({ silver: e.target.value })}
                   />
                 </div>
                 <div className="form-div-items">
-                  골 <input
+                  purple <input
                     type="number"
                     value={this.state.gold}
                     onChange={e => this.setState({ gold: e.target.value })}
                   />
                 </div>
                 <div className="form-div-items">
-                  플 <input
+                  gold <input
                     type="number"
                     value={this.state.platinum}
                     onChange={e => this.setState({ platinum: e.target.value })}
@@ -242,6 +231,10 @@ class RestaurantListView extends Component {
               <button
                 className="btn"
                 onClick={() => this.props.buttonCouponNumAdd(
+                  result.city,
+                  result.gu,
+                  result.dong,
+                  result.categorize,
                   this.state.detail,
                   this.state.bronze,
                   this.state.silver,

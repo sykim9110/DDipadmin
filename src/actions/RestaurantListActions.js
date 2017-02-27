@@ -112,20 +112,35 @@ export const buttonCouponOff = (uid) => {
   };
 };
 
-export const buttonCouponNumAdd = (uid, b, s, g, p) => {
+export const buttonCouponNumAdd = (city, gu, dong, categorize, uid, b, s, g, p) => {
+  const rootRef = firebase.database().ref().child('restaurants');
+  const quantityRef = rootRef.child(`dashboard/${uid}/quantity`);
+
+  let quantityData;
+  let resultData;
+
+  quantityRef.once('value', snapshot => {
+    console.log(snapshot.val());
+    quantityData = snapshot.val();
+    resultData = {
+      ...quantityData,
+      gray: quantityData.gray + Number(b),
+      blue: quantityData.blue + Number(s),
+      purple: quantityData.purple + Number(g),
+      gold: quantityData.gold + Number(p)
+    };
+  });
+
+  let updates = {};
+  updates[`restaurants/dashboard/${uid}/quantity`] = resultData;
+  updates[`restaurants/search/all/${uid}/quantity`] = resultData;
+  updates[`restaurants/search/${city}/${gu}/${dong}/all/${uid}/quantity`] = resultData;
+  updates[`restaurants/search/${city}/${gu}/${dong}/${categorize}/${uid}/quantity`] = resultData;
+
   return (dispatch) => {
-    firebase.database().ref(`restaurantDashboard/${uid}/admin`)
-    .once('value', snapshot => {
-      const DB = snapshot.val();
-      firebase.database().ref(`restaurantDashboard/${uid}/admin`)
-      .set({ ...DB,
-        bronzeCoupon: DB.bronzeCoupon + Number(b),
-        silverCoupon: DB.silverCoupon + Number(s),
-        goldCoupon: DB.goldCoupon + Number(g),
-        platinumCoupon: DB.platinumCoupon + Number(p)
-      })
-      .then(() => dispatch({ type: RESTAURANT_COUPON_NUM_ADD }));
-    });
+    firebase.database().ref().update(updates)
+      .then(() => dispatch({ type: RESTAURANT_COUPON_NUM_ADD }))
+      .catch(err => console.log(err));
   };
 };
 

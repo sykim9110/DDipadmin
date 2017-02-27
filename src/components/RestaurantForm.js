@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import { Input } from './common';
+import RestaurantMenuAdd from './RestaurantMenuAdd';
 
 const RestaurantForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props;
@@ -48,6 +49,12 @@ const RestaurantForm = (props) => {
         <Input id="restaurant_address" styles="input-wide" name="address" component="input" type="text" placeholder="주소">
           <h4>주소</h4>
         </Input>
+        <Input id="restaurant_photoUri" styles="input-wide" name="photoUri" component="input" type="text" placeholder="사진주소">
+          <h4>대표 이미지</h4>
+        </Input>
+        <Input id="restaurant_thumbnail" styles="input-wide" name="thumbnailUri" component="input" type="text" placeholder="섬네일 사진주소">
+          <h4>섬네일 이미지</h4>
+        </Input>
         <div className="form-div">
           <h4>좌표</h4>
           <div>
@@ -85,36 +92,40 @@ const RestaurantForm = (props) => {
             <label><Field name="sun" component="input" type="checkbox" /> 일</label>
           </div>
         </div>
+        <div>
+          <RestaurantMenuAdd />
+        </div>
         <div className="form-div">
           <h4>쿠폰</h4>
           <div className="form-div-items">
-            <label>브론즈 쿠폰 </label>
-            <Field name="bronzeCoupon" component="select">
+            <label>GRAY 쿠폰 </label>
+            <Field name="grayCoupon" component="select">
               <option></option>
-              <option value="10%">10%</option>
+              <option value="5%">5%</option>
               <option value="음료수">음료수</option>
             </Field>
           </div>
           <div className="form-div-items">
-            <label>실버 쿠폰 </label>
-            <Field name="silverCoupon" component="select">
+            <label>BLUE 쿠폰 </label>
+            <Field name="blueCoupon" component="select">
               <option></option>
-              <option value="20%">20%</option>
+              <option value="10%">10%</option>
               <option value="사이드메뉴">사이드메뉴</option>
             </Field>
           </div>
           <div className="form-div-items">
-            <label>골드 쿠폰 </label>
-            <Field name="goldCoupon" component="select">
+            <label>PURPLE 쿠폰 </label>
+            <Field name="purpleCoupon" component="select">
               <option></option>
+              <option value="20%">20%</option>
               <option value="30%">30%</option>
-              <option value="40%">40%</option>
             </Field>
           </div>
           <div className="form-div-items">
-            <label>플래티넘 쿠폰 </label>
-            <Field name="platinumCoupon" component="select">
+            <label>GOLD 쿠폰 </label>
+            <Field name="goldCoupon" component="select">
               <option></option>
+              <option value="40%">40%</option>
               <option value="50%">50%</option>
               <option value="주메뉴">주메뉴</option>
             </Field>

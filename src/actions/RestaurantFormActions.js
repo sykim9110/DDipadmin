@@ -6,7 +6,7 @@ import {
   RESTAURANT_CREATE_FAIL
 } from './types';
 
-export const restaurantCreate = (props) => {
+export const restaurantCreate = (props, menu) => {
   const {
     city,
     gu,
@@ -15,12 +15,14 @@ export const restaurantCreate = (props) => {
     name,
     phone,
     address,
+    photoUri,
+    thumbnailUri,
     lat,
     lon,
-    bronzeCoupon,
-    silverCoupon,
+    grayCoupon,
+    blueCoupon,
+    purpleCoupon,
     goldCoupon,
-    platinumCoupon,
     mon,
     tue,
     wed,
@@ -32,9 +34,12 @@ export const restaurantCreate = (props) => {
     storehourStart,
     storehourEnd
   } = props.values;
-  const infos = [city, gu, dong, categorize, name, phone, address];
+
+  const { menus } = menu.values;
+
+  const infos = [city, gu, dong, categorize, name, phone, address, photoUri];
   const latlon = [lat, lon];
-  const coupons = [bronzeCoupon, silverCoupon, goldCoupon, platinumCoupon];
+  const coupons = [grayCoupon, blueCoupon, purpleCoupon, goldCoupon];
   const days = [mon, tue, wed, thu, fri, sat, sun, all];
   const times = [storehourStart, storehourEnd];
 
@@ -48,7 +53,7 @@ export const restaurantCreate = (props) => {
   return (dispatch) => {
     dispatch({ type: RESTAURANT_CREATE });
 
-    if (data1 && data2 && data3 && data4 && data5) {
+    if (data1 && data2 && data3 && data4 && data5 && menus) {
       let storeday = [];
       let storedayString = '';
       let a, b, c, d, e, f, g;
@@ -119,44 +124,79 @@ export const restaurantCreate = (props) => {
       };
 
       const storehour = storehourArrayConvert(start, end);
-      const newRestaurantKey = firebase.database().ref().child(`restaurantsTest/${city}/${gu}/${dong}/${categorize}`).push().key;
+      const newRestaurantKey = firebase.database().ref().child('restaurants/all').push().key;
       const restaurantData = {
         name,
         phone,
         address,
+        city,
+        gu,
+        dong,
+        categorize,
+        photoUri,
         storehourString,
         storedayString,
-        coupons
+        coupons,
+        menus
       };
-
-      let updates = {};
-      updates[`restaurantsTest/${city}/${gu}/${dong}/${categorize}/${newRestaurantKey}`] = restaurantData;
-      updates[`restaurantDashboard/${newRestaurantKey}`] = {
+      const searchData = {
+        coupon: false,
+        quantity: {
+          gray: 0,
+          blue: 0,
+          purple: 0,
+          gold: 0
+        },
         name,
+        photoUri,
+        thumbnailUri,
+        coupons,
+        categorize,
+        latlon,
+        storehour,
+        storeday
+      };
+      const dashboardData = {
+        name,
+        city,
+        gu,
         dong,
         categorize,
         coupons,
         latlon,
         storehour,
+        storehourString,
         storeday,
-        admin: {
-          coupon: false,
-          bronzeCoupon: 0,
-          silverCoupon: 0,
-          goldCoupon: 0,
-          platinumCoupon: 0,
+        storedayString,
+        photoUri,
+        thumbnailUri,
+        coupon: false,
+        quantity: {
+          gray: 0,
+          blue: 0,
+          purple: 0,
+          gold: 0
         },
         count: {
-          bronzeCouponUseCount: 0,
-          silverCouponUseCount: 0,
-          goldCouponUseCount: 0,
-          platinumCouponUseCount: 0,
-          bronzeCouponExposureCount: 0,
-          silverCouponExposureCount: 0,
-          goldCouponExposureCount: 0,
-          platinumCouponExposureCount: 0,
+          grayUse: 0,
+          blueUse: 0,
+          purpleUse: 0,
+          goldUse: 0,
+          grayExposure: 0,
+          blueExposure: 0,
+          purpleExposure: 0,
+          goldExposure: 0,
         }
-      };
+      }
+
+      let updates = {};
+      updates[`restaurants/info/all/${newRestaurantKey}`] = restaurantData;
+      updates[`restaurants/info/${city}/${gu}/${dong}/all/${newRestaurantKey}`] = restaurantData;
+      updates[`restaurants/info/${city}/${gu}/${dong}/${categorize}/${newRestaurantKey}`] = restaurantData;
+      updates[`restaurants/dashboard/${newRestaurantKey}`] = dashboardData;
+      updates[`restaurants/search/all/${newRestaurantKey}`] = searchData;
+      updates[`restaurants/search/${city}/${gu}/${dong}/all/${newRestaurantKey}`] = searchData;
+      updates[`restaurants/search/${city}/${gu}/${dong}/${categorize}/${newRestaurantKey}`] = searchData;
 
       firebase.database().ref().update(updates)
         .then(() => dispatch({ type: RESTAURANT_CREATE_SUCCESS }))
@@ -185,6 +225,11 @@ export const restaurantCreate = (props) => {
       dispatch({
         type: RESTAURANT_CREATE_FAIL,
         payload: '쿠폰 미기입'
+      });
+    } else if (!menus) {
+      dispatch({
+        type: RESTAURANT_CREATE_FAIL,
+        payload: '메뉴 미기입'
       });
     }
   };
